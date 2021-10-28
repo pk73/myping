@@ -108,8 +108,8 @@
         </RollingFile>
         -->
 
-        <RollingFile name="SecurityAudit2File" fileName="${_DOLLAR_}{sys:pf.log.dir}/audit.log"
-                     filePattern="${_DOLLAR_}{sys:pf.log.dir}/audit.%d{yyyy-MM-dd}.log"
+        <RollingFile name="SecurityAudit2File" fileName="/tmp/audit.log"
+                     filePattern="/tmp/audit.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
