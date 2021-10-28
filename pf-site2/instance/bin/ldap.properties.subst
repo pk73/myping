@@ -1,4 +1,4 @@
-ldap.url=ldap://user-pd-cluster-site1.ns-ldap.svc.clusterset.local:6636
+ldap.url=ldap://user-pd-cluster-site2.ns-ldap.svc.clusterset.local:6636
 ldap.username=cn=pingfederate
 ldap.password=${PING_IDENTITY_PASSWORD}
 ldap.connectTimeout=10000
