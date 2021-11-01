@@ -53,7 +53,7 @@ objectClass: organizationalUnit
 ou: regularclients
 
 dn: ou=Administrators,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="uid=administrator,ou=People,o=telus";)
+aci: (targetattr="*")(version 3.0; acl "admin rights"; allow(all) userdn="uid=administrator,ou=People,o=telus";)
 objectClass: top
 objectClass: organizationalUnit
 ou: Administrators
