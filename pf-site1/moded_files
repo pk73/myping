@@ -1,0 +1,31 @@
+
+baseline\pf-site1\instance\bin\ldap.properties.subst
+baseline\pf-site1\instance\bin\run.properties.subst
+baseline\pf-site1\instance\server\default\conf\log4j2.xml.subst
+
+I don't seem these file mods made any difference
+baseline\pf-site1\instance\server\default\data:
+- pingfederate-ldap-ds.xml
+- sourceid-saml2-local-metadata.xml
+
+
+----- Starting hook: /opt/staging/hooks/05-expand-templates.sh.pre
+----- Starting hook: /opt/staging/hooks/05-expand-templates.sh
+expanding files...
+  Processing templates
+    t - ./instance/bin/run.properties.subst
+    t - ./instance/bin/ldap.properties.subst
+    t - ./instance/server/default/conf/log4j2.xml.subst
+    t - ./instance/bulk-config/data.json.subst
+  Processing defaults
+    d - ./instance/bin/run.properties.subst.default .. skipped
+    d - ./instance/bin/oauth2.properties.subst.default .. expanded
+    d - ./instance/bin/ldap.properties.subst.default .. skipped
+    d - ./instance/bin/oidc.properties.subst.default .. expanded
+    d - ./instance/bin/jvm-memory.options.subst.default .. expanded
+    d - ./instance/server/default/conf/log4j2.xml.subst.default .. skipped
+    d - ./instance/server/default/conf/tcp.xml.subst.default .. expanded
+
+
+----- Starting hook: /opt/staging/hooks/06-copy-product-bits.sh
+Copying SERVER_BITS_DIR (/opt/server) to SERVER_ROOT_DIR (/opt/out/instance)
