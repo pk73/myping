@@ -46,9 +46,14 @@ objectClass: top
 objectClass: organizationalUnit
 ou: sessions
 
-dn: ou=regularclients,${USER_BASE_DN}
+dn: ou=koodoclients,ou=regularclients,${USER_BASE_DN}
 aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
 objectClass: top
 objectClass: organizationalUnit
-ou: regularclients
+ou: koodoclients
 
+dn: ou=telusclients,ou=regularclients,${USER_BASE_DN}
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
+objectClass: top
+objectClass: organizationalUnit
+ou: telusclients
