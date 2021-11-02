@@ -73,13 +73,13 @@ o: partners
 dn: ou=people,o=partners,${USER_BASE_DN}
 aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
 objectClass: top
-objectClass: organizationUnit
+objectClass: organizationalUnit
 ou: people
 
 dn: ou=groups,o=partners,${USER_BASE_DN}
 aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
 objectClass: top
-objectClass: organizationUnit
+objectClass: organizationalUnit
 ou: groups
 
 dn: ou=applications,o=partners,${USER_BASE_DN}
