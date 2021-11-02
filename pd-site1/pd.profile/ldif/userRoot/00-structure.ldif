@@ -65,13 +65,35 @@ objectClass: organizationalUnit
 ou: telusclients
 
 dn: o=partners,${USER_BASE_DN}
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
 objectClass: top
 objectClass: organization
 o: partners
 
+dn: ou=people,o=partners,${USER_BASE_DN}
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
+objectClass: top
+objectClass: organizationUnit
+ou: people
+
+dn: ou=groups,o=partners,${USER_BASE_DN}
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
+objectClass: top
+objectClass: organizationUnit
+ou: groups
+
 dn: ou=applications,o=partners,${USER_BASE_DN}
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=partneradmin,ou=applications,o=partners,o=telus";)
 objectClass: top
 objectClass: organizationalUnit
 ou: applications
+
+dn: cn=NO GROUPS PLEASE,ou=groups,o=partners,${USER_BASE_DN}
+cn: NO GROUPS PLEASE
+objectClass: top
+objectClass: groupofuniquenames
+
+dn: cn=Directory Administrators,${USER_BASE_DN}
+cn: Directory Administrators
+objectClass: top
+objectClass: groupofuniquenames
