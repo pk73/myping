@@ -517,7 +517,7 @@
                             },
                             {
                                 "name": "Search Base",
-                                "value": "dc=example,dc=com"
+                                "value": "0=telus"
                             },
                             {
                                 "name": "Search Filter",
