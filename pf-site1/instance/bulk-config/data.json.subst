@@ -517,7 +517,7 @@
                             },
                             {
                                 "name": "Search Base",
-                                "value": "0=telus"
+                                "value": "o=telus"
                             },
                             {
                                 "name": "Search Filter",
