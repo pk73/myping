@@ -6,7 +6,9 @@ baseline\pf-site1\instance\bin\ldap.properties.subst
 baseline\pf-site1\instance\bin\run.properties.subst
 baseline\pf-site1\instance\server\default\conf\log4j2.xml.subst
 
-I don't seem these file mods made any difference
+baseline\pf-site1\instance\server\default\deploy\<ptnr.jars>
+
+It doesn't seem these file mods made any difference
 baseline\pf-site1\instance\server\default\data:
 - pingfederate-ldap-ds.xml
 - sourceid-saml2-local-metadata.xml
