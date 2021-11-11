@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<!-- template name: tmsso.html.form.login.template.html -->
+
+#set( $messageKeyPrefix = "html.form.login.template." )
+
+<!-- Configurable default behavior for the Remember Username checkbox -->
+#set ($enableCheckboxByDefault = false)
+#if($rememberUsernameCookieExists)
+    #set ($rememberUsernameChecked = "checked")
+#else
+    #if($enableCheckboxByDefault)
+        <!-- allow the checkbox to be enabled by default -->
+        #set ($rememberUsernameChecked = "checked")
+    #else
+        <!-- set the checkbox to unchecked -->
+        #set ($rememberUsernameChecked = "")
+    #end
+#end
+	
+<html lang="$locale.getLanguage()">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="version" content="sso-improvement-v1.0.0">
+    <meta charset="UTF-8">
+    
+    <base href="$PingFedBaseURL"/>
+        <title>$templateMessages.getMessage($messageKeyPrefix, "title")</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.telus.digital/thorium/core/v0.16.3/tds.min.css">
+        <link rel="stylesheet" href="assets/styles/telus-sso-improvement.css" type="text/css">
+    
+    <link rel="icon" href="//static.telus.com/common/images/favicon/TELUS-favicon-128.png" />
+    <link rel="favicon" href="//static.telus.com/common/images/favicon/TELUS-favicon-128.png" />
+    <link rel="favicon" sizes="32x32" href="//static.telus.com/common/images/favicon/TELUS-favicon-32.png" />
+    <link rel="favicon" sizes="128x128" href="//static.telus.com/common/images/favicon/TELUS-favicon-128.png" />
+    <link rel="apple-touch-icon" href="//static.telus.com/common/images/favicon/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="//static.telus.com/common/images/favicon/TELUS-apple-touch-icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="//static.telus.com/common/images/favicon/TELUS-apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="//static.telus.com/common/images/favicon/TELUS-apple-touch-icon-144.png" />
+</head>
+<script>
+    var forgotPasswordUrl = '$PingFedBaseURL' + 'ext/guestpasswordreset';
+
+    #set ($pos = $PingFedBaseURL.indexOf("//") + 2 )
+    #set ($domain = $PingFedBaseURL.substring($pos) )
+    #set ($pos = $domain.indexOf(":") )
+    #if ($pos < 0) 
+     #set ($pos = $domain.indexOf("/") )
+    #else 
+     #set ($pos = $domain.length() )
+    #end
+    #set ($domain = $domain.substring(0, $pos) )
+
+    var forgotPasswordUrl = '$templateMessages.getMessage("password.reset.", $domain)';
+
+console.log("===> " + '$PingFedBaseURL');
+console.log("===> " + '$domain');
+console.log("===> " + forgotPasswordUrl);
+
+    var activeLanguage="";
+    var languageText = '$templateMessages.getMessage($messageKeyPrefix, "language")';
+</script>
+<body>
+    <!-- Header Start -->
+    <div class="nav-container">
+        <div class="container conatiner--limited-width telus-nav">
+            <div class="xs-6 small-9">
+                <div class="logo">
+                    <div class="telus-icon"></div>
+                </div>
+            </div>
+            <div class="xs-6 small-3 language-container">
+                <div class="field language-hint field--hinted">
+                    <div class="header-language-hint hint">
+                        <button tabindex="-1" type="button" aria-controls="language-hint" class="button-plain hint__trigger">
+                            <span class="accessible-hide" data-label="language.hint.button"></span>
+                        </button>
+                        <span aria-role="tooltip" aria-hidden="false" id="language-hint" class="hint__text" data-label="language.hint">
+                        </span>
+                    </div>
+
+                </div>
+                <div class="language"><a tabindex="9" class="link" href="javascript:void(0)">$templateMessages.getMessage($messageKeyPrefix, "language")</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    
+    
+    <script>
+        //Labels used on the page.
+        var labels = {
+                "language.hint.button": "$templateMessages.getMessage($messageKeyPrefix, 'language.hint.button')",
+                "language.hint": "$templateMessages.getMessage($messageKeyPrefix, 'language.hint')",
+                "terms-and-conditions.heading": "$templateMessages.getMessage($messageKeyPrefix, 'terms-and-conditions.heading')",
+                "terms-and-conditions.body": "$templateMessages.getMessage($messageKeyPrefix, 'terms-and-conditions.body')",
+                "forgot-password.body": "$templateMessages.getMessage($messageKeyPrefix, 'forgot-password.body')",
+                "username.team-member.hint": "$templateMessages.getMessage($messageKeyPrefix, 'username.team-member.hint')",
+                "username.team-member.placeholder": "$templateMessages.getMessage($messageKeyPrefix, 'username.team-member.placeholder')",
+                "username.team-member.custom-validity": "$templateMessages.getMessage($messageKeyPrefix, 'username.team-member.custom-validity')",
+                "username.team-member.custom-validity.id": "$templateMessages.getMessage($messageKeyPrefix, 'username.team-member.custom-validity.id')",
+                "username.team-member.custom-validity.telus-email": "$templateMessages.getMessage($messageKeyPrefix, 'username.team-member.custom-validity.telus-email')",
+                "username.guest.hint.button": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.hint.button')",
+                "username.guest.hint": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.hint')",
+                "username.guest.custom-validity": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.custom-validity')",
+                "username.guest.custom-validity.email": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.custom-validity.email')",
+                "username.guest.placeholder": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.placeholder')",
+                "username.guest.custom-validity.telus-email": "$templateMessages.getMessage($messageKeyPrefix, 'username.guest.custom-validity.telus-email')",
+                "password.team-member.placeholder": "$templateMessages.getMessage($messageKeyPrefix, 'password.team-member.placeholder')",
+                "password.team-member.hint": "$templateMessages.getMessage($messageKeyPrefix, 'password.team-member.hint')",
+                "password.team-member.custom-validity": "$templateMessages.getMessage($messageKeyPrefix, 'password.team-member.custom-validity')",
+                "password.guest.placeholder": "$templateMessages.getMessage($messageKeyPrefix, 'password.guest.placeholder')",
+                "password.guest.hint": "$templateMessages.getMessage($messageKeyPrefix, 'password.guest.hint')",
+                "password.guest.custom-validity": "$templateMessages.getMessage($messageKeyPrefix, 'password.guest.custom-validity')",
+                "footer.copyright": "$templateMessages.getMessage($messageKeyPrefix, 'footer.copyright')"
+        }
+
+        //Server side errors after login.
+
+	var errors = [];
+   	#if($authnMessageKey)
+   		#if ($authnMessageKey == "authn.srvr.msg.password.expired")
+   	        console.log("$authnMessageKey == authn.srvr.msg.password.expired");
+   			#set( $passwordExpiredKey = "authn.srvr.msg.password.expired.pt140" )
+  			#set( $passwordExpiredKey2 = "authn.srvr.msg.password.expired2" )
+          	errors.push("$templateMessages.getMessage($messageKeyPrefix, $passwordExpiredKey)" + "$username" + "$templateMessages.getMessage($messageKeyPrefix, $passwordExpiredKey2)");
+   		#else
+   	        console.log("$authnMessageKey != authn.srvr.msg.password.expired");
+            errors.push("$templateMessages.getMessage($messageKeyPrefix, $authnMessageKey)");
+   		#end
+   	 #end
+	 #if($errorMessageKey)
+		console.log("adding error2...");
+	    errors.push("$templateMessages.getMessage($messageKeyPrefix, $errorMessageKey)");
+	#end
+	
+
+/*
+        var errors = [
+                "Something went wrong logging in",
+                "Something else went wrong logging in"
+        ]
+*/
+
+        var modalFocusElement = null;
+    </script>
+    <div class="login-container">
+        <div class="login-header">
+        </div>
+        <div class="content-container container conatiner--limited-width">
+            <div class="container container--limited-wdith small-collapse">
+                <div class="form-container form-container__padding">
+                    <h3 data-label-ignore="login.header.app-name" class="appname__heading">$templateMessages.getMessage($messageKeyPrefix, "login.header.app-name")</h3>
+                    <h1 data-label-ignore="login.header" class="form-container__heading section-header" >$templateMessages.getMessage($messageKeyPrefix, "login.header")</h1>
+
+                    <div id="error-container" class="field field--error" style="display: none;">
+                        <div class="helper helper--error" id="unfortunate-error">
+                            <p class="text--medium">
+                                <strong data-label-ignore="error-header">$templateMessages.getMessage($messageKeyPrefix, "error-header")</strong>
+                            </p>
+                            <ul id="error-list" class="list list--error list--compact">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <form id="login" action="$url" method="POST">
+                        <fieldset class="field field--hinted field-username">
+                            <label for="username" data-label-ignore="username">$templateMessages.getMessage($messageKeyPrefix, "username")</label>
+                            <div style="display:none;" class="helper helper--error" id="username-field-error">
+                                <strong></strong>
+                            </div>
+                            <input tabindex="3" id="username" name="$name" value="$username" placeholder-data-label="username.team-member.placeholder" />
+                        </fieldset>
+
+                        <fieldset class="field field--hinted field-password">
+                            <label for="password" data-label-ignore="password">$templateMessages.getMessage($messageKeyPrefix, "password")</label>
+                            <div style="display:none;" class="helper helper--error" id="password-field-error">
+                                <strong></strong>
+                            </div>
+                            <input tabindex="4" type="password" id="password" name="$pass" placeholder-data-label="password.team-member.placeholder" />
+                        </fieldset>
+                        <div>
+                            <button tabindex="5" class="button button--primary" data-label-ignore="login">
+								$templateMessages.getMessage($messageKeyPrefix, "login")							
+                            </button>
+                        </div>
+						
+
+						<input type="hidden" name="$ok" value=""/>
+						
+                    	<div class="warningmsg">
+								$templateMessages.getMessage($messageKeyPrefix, "warning")
+                    	</div>
+
+                    </form>
+					<br> 
+                    <div class="helplinks">
+						<a href='$templateMessages.getMessage($messageKeyPrefix, "first.time.visitor.url.pt140")'>
+							$templateMessages.getMessage($messageKeyPrefix, "first.time.visitor")
+						</a>
+                	</div>
+                    <div class="helplinks">
+						<a href='$templateMessages.getMessage($messageKeyPrefix, "forget.your.password.url.pt140")'>
+							$templateMessages.getMessage($messageKeyPrefix, "forget.your.password")
+						</a>
+                	</div>
+                    <div class="helplinks">
+						<a	href='$templateMessages.getMessage($messageKeyPrefix, "trouble.logging.in.url.pt140")'>
+							$templateMessages.getMessage($messageKeyPrefix, "trouble.logging.in")
+						</a>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for forgot password -->
+    <div class="modal-background" style="display:none;">
+    </div>
+    <div class="row modal-container" style="display:none;">
+        <div class="modal-container__close-button-container">
+<!--            <a class="text--medium modal-container__close-button" href="javascript:void(0)" data-label-ignore="modal-close">-->
+            <a class="text--medium modal-container__close-button" href="#" data-label-ignore="modal-close">
+				$templateMessages.getMessage($messageKeyPrefix, "modal-close")
+            </a>
+        </div>
+        <h3 class="modal_container__modal-heading" data-label-ignore="forgot-password.heading">$templateMessages.getMessage($messageKeyPrefix, "forgot-password.heading")</h3>
+        <p class="modal_container__modal-content" data-label-ignore="forgot-password.body">
+			$templateMessages.getMessage($messageKeyPrefix, "forgot-password.body")
+        </p>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="footer-container clearfix"><a class="smalltext2" href='http://www.telus.com'>
+		<div> 
+		    <a class="smalltext2" href='$templateMessages.getMessage($messageKeyPrefix, "telus.com.url")'>
+			telus.com</a>&nbsp; 
+			<a class="smalltext2" href='$templateMessages.getMessage($messageKeyPrefix, "browser.requirements.url.pt140")'>
+			$templateMessages.getMessage($messageKeyPrefix, "browser.requirements")</a> &nbsp;
+			<a class="smalltext2" href='$templateMessages.getMessage($messageKeyPrefix, "terms.and.conditions.url.pt140")'>
+			$templateMessages.getMessage($messageKeyPrefix, "terms.and.conditions")</a>
+		</div>
+		</p>
+		<div> 
+	        <p id="copyright" class="text--medium">&copy; <script>document.write(new Date().getFullYear());</script> $templateMessages.getMessage($messageKeyPrefix, 'footer.copyright')</p>
+		</div>
+    </div>
+    <script type="application/javascript" data-main="assets/scripts/main.js" src="assets/bower_components/require.js"></script>
+    <!-- Footer End -->
+</body>
+</html>
