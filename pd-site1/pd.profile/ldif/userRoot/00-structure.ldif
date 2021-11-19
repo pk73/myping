@@ -2,7 +2,18 @@ dn: ${USER_BASE_DN}
 objectClass: top
 objectClass: ${BASE_CLASS}
 ${BASE_ATTRIBUTE}: ${BASE_VALUE}
-aci: (targetattr="userPassword")(version 3.0; acl "Allow users to update their own password"; allow (write) userdn="ldap:///self";)
+
+## Original
+# Added below supercedes this entry #aci: (targetattr="userPassword")(version 3.0; acl "Allow users to update their own password"; allow (write) userdn="ldap:///self";)
+
+## Added by Chris
+aci: (targetattr = "*")(version 3.0; acl "Allow self entry modification"; allow (write) userdn ="ldap:///self";)
+aci: (targetattr != "userPassword ") (version 3.0; acl "Anonymous access"; allow (read, search, compare)userdn = "ldap:///anyone";)
+aci: (targetattr = "telusOTPlockoutdate") (version 3.0; acl "AMLdapUserUpdate_OTP"; allow (read, compare, search, write, delete, add) (userdn = "ldap:///uid=amldapuser,ou=applications,o=partners,o=telus") ;)
+aci: (targetattr = "telusbrowsertoken") (version 3.0; acl "AMLdapUserUpdateBrowser"; allow (read, compare, search, write, delete, add) (userdn = "ldap:///uid=amldapuser,ou=applications,o=partners,o=telus") ;)
+aci: (targetattr = "*") (target = "ldap:///ou=people,o=partners,o=telus") (version 3.0;acl "Access Manager";allow (read,compare,search,selfwrite,delete,add)(userdn = "ldap:///uid=amadmin,ou=applications,o=partners,o=telus" or userdn = "ldap:///uid=amldapuser,ou=applications,o=partners,o=telus");)
+
+## Original
 aci: (version 3.0; acl "PingFed Proxy Access"; allow(proxy) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 aci: (targetattr!="userPassword")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 aci: (targetattr="userPassword")(version 3.0; acl "Allow the pingfederate user to update passwords"; allow (write) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
@@ -75,3 +86,19 @@ aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:/
 objectClass: top
 objectClass: organizationalUnit
 ou: applications
+
+##
+## Chris Additions
+##
+dn: ou=people,o=partners,${USER_BASE_DN}
+aci: (targetattr = "*")(version 3.0; acl "User Update";allow (all)(userdn ="ldap:///uid=import,ou=applications,o=partners,o=telus");)
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=people,o=partners,${USER_BASE_DN}
+aci: (targetattr = "*")(version 3.0; acl "PingFed Admin";allow (all)(userdn ="ldap:///uid=pingfedadmin,ou=applications,o=partners,o=telus");)
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
