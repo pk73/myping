@@ -90,15 +90,15 @@ ou: applications
 ##
 ## Chris Additions
 ##
-dn: ou=people,o=partners,${USER_BASE_DN}
-aci: (targetattr = "*")(version 3.0; acl "User Update";allow (all)(userdn ="ldap:///uid=import,ou=applications,o=partners,o=telus");)
-objectClass: top
-objectClass: organizationalUnit
-ou: people
+#dn: ou=people,o=partners,${USER_BASE_DN}
+#aci: (targetattr = "*")(version 3.0; acl "User Update";allow (all)(userdn ="ldap:///uid=import,ou=applications,o=partners,o=telus");)
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: people
 
-dn: ou=people,o=partners,${USER_BASE_DN}
-aci: (targetattr = "*")(version 3.0; acl "PingFed Admin";allow (all)(userdn ="ldap:///uid=pingfedadmin,ou=applications,o=partners,o=telus");)
-objectClass: top
-objectClass: organizationalUnit
-ou: people
+#dn: ou=people,o=partners,${USER_BASE_DN}
+#aci: (targetattr = "*")(version 3.0; acl "PingFed Admin";allow (all)(userdn ="ldap:///uid=pingfedadmin,ou=applications,o=partners,o=telus");)
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: people
 
