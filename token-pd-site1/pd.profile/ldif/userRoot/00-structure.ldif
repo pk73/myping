@@ -20,32 +20,48 @@ aci: (targetcontrol="1.3.6.1.4.1.30221.2.5.40")(version 3.0; acl "Access to the 
 #objectClass: organizationalUnit
 #ou: People
 
-dn: ou=groups,${USER_BASE_DN}
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
+#dn: ou=groups,${USER_BASE_DN}
+#aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,o=telus";)
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: groups
 
-dn: ou=consents,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: consents
+#dn: ou=consents,${USER_BASE_DN}
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: consents
 
-dn: ou=oauthClients,${USER_BASE_DN}
+
+#dn: ou=sessions,${USER_BASE_DN}
+#aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: sessions
+
+##
+## Partner and CI Additions
+##
+
+dn: ou=oauthClients,ou=customer,${USER_BASE_DN}
 aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 objectClass: top
 objectClass: organizationalUnit
 ou: oauthClients
 
-dn: ou=grants,${USER_BASE_DN}
+dn: ou=grants,ou=customer,${USER_BASE_DN}
 aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 objectClass: top
 objectClass: organizationalUnit
 ou: grants
 
-dn: ou=sessions,${USER_BASE_DN}
+dn: ou=oauthClients,ou=partner,${USER_BASE_DN}
 aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 objectClass: top
 objectClass: organizationalUnit
-ou: sessions
+ou: oauthClients
 
+dn: ou=grants,ou=partner,${USER_BASE_DN}
+aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+objectClass: top
+objectClass: organizationalUnit
+ou: grants
