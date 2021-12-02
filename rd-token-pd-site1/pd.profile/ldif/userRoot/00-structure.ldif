@@ -26,27 +26,22 @@ objectClass: top
 objectClass: organizationalUnit
 ou: groups
 
-dn: ou=consents,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: consents
+#dn: ou=consents,${USER_BASE_DN}
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: consents
 
 
-dn: ou=sessions,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: sessions
+#dn: ou=sessions,${USER_BASE_DN}
+#aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+#objectClass: top
+#objectClass: organizationalUnit
+#ou: sessions
 
 ##
 ## Partner and CI Additions
 ##
 
-dn: ou=partner,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: partner
 
 #dn: ou=oauthClients,ou=customer,${USER_BASE_DN}
 #aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
