@@ -42,6 +42,12 @@ ou: sessions
 ## Partner and CI Additions
 ##
 
+dn: ou=partner,${USER_BASE_DN}
+aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+objectClass: top
+objectClass: organizationalUnit
+ou: partner
+
 #dn: ou=oauthClients,ou=customer,${USER_BASE_DN}
 #aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
 #objectClass: top
@@ -53,6 +59,12 @@ ou: sessions
 #objectClass: top
 #objectClass: organizationalUnit
 #ou: grants
+
+dn: ou=partner,${USER_BASE_DN}
+aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+objectClass: top
+objectClass: organizationalUnit
+ou: partner
 
 dn: ou=oauthClients,ou=partner,${USER_BASE_DN}
 aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
